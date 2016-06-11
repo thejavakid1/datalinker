@@ -1,6 +1,7 @@
 package thejavakid.datalink;
 
 import android.app.Notification;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -48,7 +49,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object listItem = adapter.getItem(position);
-                Toast.makeText(view.getContext(), adapter.getItem(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Opening: "+adapter.getItem(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Settings.class);
+                Bundle b = new Bundle();
+                b.putString("app",adapter.getItem(position));
+                intent.putExtras(b);
+                startActivity(intent);
+                finish();
             }
         });
     }
