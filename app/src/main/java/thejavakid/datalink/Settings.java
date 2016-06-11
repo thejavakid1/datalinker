@@ -1,9 +1,8 @@
 package thejavakid.datalink;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Settings extends AppCompatActivity {
 
@@ -13,10 +12,10 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         TextView appname = (TextView)this.findViewById(R.id.appname);
         Bundle b = getIntent().getExtras();
-        String value = ""; // or other values
+        String value = "";
         if(b != null)
         value = b.getString("app");
+        assert appname != null;
         appname.setText(value);
-        Toast.makeText(this, value, Toast.LENGTH_LONG).show();
     }
 }

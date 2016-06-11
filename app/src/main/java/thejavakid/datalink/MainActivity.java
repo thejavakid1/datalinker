@@ -1,8 +1,6 @@
 package thejavakid.datalink;
 
-import android.app.Notification;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -11,11 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Apps = this.getPackageManager().getInstalledPackages(PackageManager.GET_META_DATA);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.ActivityMain);
         final ListView appSelect = (ListView) this.findViewById(R.id.Apps);
         int i = 0;
         List<String> AdapterList = new ArrayList<String>();
@@ -37,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+        //the code android.R.layout.simple_spinner_item w android.R.layout.simple_spinner_itemorks here without fault so no point in changing it
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, AdapterList);
         try {
             appSelect.setAdapter(adapter);
@@ -49,13 +45,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object listItem = adapter.getItem(position);
-                Toast.makeText(view.getContext(), "Opening: "+adapter.getItem(position), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, Settings.class);
                 Bundle b = new Bundle();
                 b.putString("app",adapter.getItem(position));
                 intent.putExtras(b);
                 startActivity(intent);
-                finish();
             }
         });
     }
