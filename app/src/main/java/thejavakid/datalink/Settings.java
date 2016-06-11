@@ -16,6 +16,7 @@ public class Settings extends AppCompatActivity {
         String value = ""; // or other values
         if(b != null)
         value = b.getString("app");
-        Toast.makeText(this, value, Toast.LENGTH_LONG);
+        appname.setText(value);
+        Toast.makeText(this, value, Toast.LENGTH_LONG).show();
     }
 }
